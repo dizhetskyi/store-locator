@@ -8,9 +8,9 @@ class MapCluster extends Component {
   }
 
   clickHandler(){
-  	const { lat, lng } = this.props;
+    const { lat, lng } = this.props;
 
-  	this.props.onClusterClick(lat, lng)
+    this.props.onClusterClick(lat, lng)
   }
 
   render() {
