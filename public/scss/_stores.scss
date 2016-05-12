@@ -1,0 +1,28 @@
+.store-locator--stores {
+	height: 50vh;
+	overflow: auto;
+}
+
+.map-cluster {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  left: -40px / 2;
+  top: -40px / 2;
+
+  border-radius: 50%;
+  background-color: #ee9cf3;
+  box-shadow: 0 0 0 5px rgba(#000,.5);
+  text-align: center;
+  color: #fff;
+  font-size: 16px;
+  line-height: 40px;
+  font-weight: bold;
+
+  transition: transform .2s ease;
+  cursor: pointer;
+
+  &:hover {
+    transform: scale(1.2)
+  }
+};
