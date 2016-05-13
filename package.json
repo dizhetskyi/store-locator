@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "watch": "webpack ./public/app.js ./dist/bundle.js --watch --config ./webpack.config.js",
+    "build": "webpack ./public/app.js ./dist/bundle.js --config ./webpack.config.prod.js"
   },
   "keywords": [],
   "author": "",
@@ -18,14 +19,12 @@
     "css-loader": "^0.23.1",
     "google-map-react": "^0.12.1",
     "isomorphic-fetch": "^2.2.1",
-    "jquery": "^2.2.3",
     "node-sass": "^3.7.0",
     "points-cluster": "^0.1.4",
     "react": "^15.0.2",
     "react-dom": "^15.0.2",
     "sass-loader": "^3.2.0",
     "style-loader": "^0.13.1",
-    "webpack": "^1.13.0",
-    "webpack-dev-server": "^1.14.1"
+    "webpack": "^1.13.0"
   }
 }

@@ -1,7 +1,78 @@
-.store-locator--stores {
-	height: 50vh;
-	overflow: auto;
+* {
+  margin: 0;
+  padding: 0;
+  outline: none;
 }
+
+body {
+  font: normal 14px arial;
+}
+
+.store-locator {
+  display: flex;
+  height: 100vh;
+  align-items: center;
+  justify-content: center;
+}
+.store-locator--loader {
+  
+}
+
+.store-locator--map {
+  width: 50%;
+  height: 100%;
+  order: 2;
+}
+.store-locator--data {
+  width: 50%;
+  height: 100%;
+  display: flex;
+  order: 1;
+  flex-direction: column;
+}
+.store-locator--search {
+  width: 100%;
+  padding-bottom: 20px;
+
+  input, button, select {
+    padding: 10px;
+  }
+}
+.store-locator--search-or {
+  font-style: italic;
+  color: #999;
+  padding: 5px 20px;
+}
+.store-locator--search-row {
+  padding: 10px 20px;
+}
+
+.store-locator--stores {
+  width: 100%;
+  flex-grow: 1;
+	overflow: auto;
+
+  ul {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+  }
+
+  li {
+    padding: 15px 20px;
+
+    h4 {
+      margin: 0;
+      margin-bottom: 10px;
+      text-transform: uppercase;
+    }
+
+    + li {
+      border-top: 1px solid #eee;
+    }
+  }
+}
+.store-locator--stores {}
 
 .map-cluster {
   position: absolute;
@@ -19,7 +90,7 @@
   line-height: 40px;
   font-weight: bold;
 
-  transition: transform .2s ease;
+  transition: transform .2s ease, background .2s ease;
   cursor: pointer;
 
   &:hover {

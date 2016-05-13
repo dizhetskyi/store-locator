@@ -12,18 +12,22 @@ class MapBox extends Component {
     super(props);
 
     this.state = {
-      zoom: this.props.zoom,
-      center: this.props.center
+      zoom: this.props.defaultZoom,
+      bounds: { 
+        nw: { lat: 85, lng: -180 }, 
+        se: { lat: -85, lng: 180 } 
+      }
     }
   }
 
   clusterClickHandler(lat, lng){
-    this.setState({zoom: this.state.zoom + 2, center: [lat, lng]})
+    this.setState({zoom: this.state.zoom + 2/*, center: [lat, lng]*/})
   }
 
   render(){
 
     const { stores } = this.props;
+    const { bounds, zoom } = this.state;
 
     const points = stores.map(store => ({ lat: +store.latitude, lng: +store.longtitude }));
 
@@ -32,11 +36,8 @@ class MapBox extends Component {
       maxZoom: 15,
       radius: 80
     })({ 
-      bounds: { 
-        nw: { lat: 85, lng: -180 }, 
-        se: { lat: -85, lng: 180 } 
-      }, 
-      zoom: this.state.zoom 
+      bounds, 
+      zoom
     }).map(({wx, wy, numPoints}) => {
       return {
         lat: wy,
@@ -46,13 +47,12 @@ class MapBox extends Component {
     });
 
     return (
-      <div style={{width: '100%', height: '500px'}}>
+      <div className="store-locator--map">
         <GoogleMap 
-          center={this.state.center}
-          // defaultZoom={this.props.zoom}
-          zoom={this.state.zoom}
-          onChange={({zoom})=>{
-            this.setState({zoom})
+          defaultCenter={this.props.center}
+          defaultZoom={this.props.defaultZoom}
+          onChange={({zoom, bounds})=>{
+            this.setState({zoom, bounds})
           }}
           bootstrapURLKeys={{
             key: 'AIzaSyB603cndqog_XY7xGWHlZxmwJBWSUhLhow'
@@ -66,7 +66,7 @@ class MapBox extends Component {
                   lat={lat} 
                   lng={lng} 
                   text={numPoints} 
-                  onClusterClick={this.clusterClickHandler.bind(this)}
+                  // onClusterClick={this.clusterClickHandler.bind(this)}
                 />
             }
           )}
@@ -79,7 +79,7 @@ class MapBox extends Component {
 
 MapBox.defaultProps = {
   center: [31.21594, -81.49319],
-  zoom: 15
+  defaultZoom: 2
 };
 
 export default MapBox;
